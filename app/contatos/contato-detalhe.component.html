@@ -1,0 +1,39 @@
+<div class="container">
+    <!--() -> event binding; [] -> property binding-->
+    <h2>Salvar contato</h2>
+
+    <form (ngSubmit)="onSubmit()" #contatoForm = "ngForm" novalidate>
+        
+        <div [ngClass] = "getFormGroupClass(nome.valid, nome.pristine)">
+            <label for="nome">Nome</label>
+            <input type="text"  placeholder="Insira o nome"
+                [ngClass] ="getFormControlClass(nome.valid, nome.pristine)"
+                required
+                 #nome ="ngModel"
+                 name="nome"
+                [(ngModel)]="contato.nome">
+              <div class="form-control-feedback" [hidden] = "nome.valid || nome.pristine">Campo nome obrigatório</div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" placeholder="Insira o email" 
+            required
+            name="email"
+            [(ngModel)]="contato.email">
+        </div>
+        <div class="form-group">
+            <label for="telefone" >Telefone</label>
+            <input type="text" class="form-control" placeholder="Insira o Telefone"
+            required
+            name="telefone"
+            [(ngModel)]="contato.telefone">
+        </div>
+
+        <button type="submit" class="btn btn-success" 
+        [disabled] = "!contatoForm.form.valid">Salvar</button>
+        <a class="btn btn-secondary" (click)="goBack()">Voltar</a>
+
+    </form> 
+    
+
+</div>  
